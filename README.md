@@ -1,5 +1,5 @@
 # Twitter
-Twitter api for zf3
+Twitter api
 
 This is a Twitter api for zf2/3. 
 
@@ -13,4 +13,4 @@ just clone into your project and provide Twitter credentials in global.php, see 
         'userId' => ''
     ]
 
-Add your own redentials and your good to go. See IndexController for example
+Add your own credentials and your good to go. See IndexController for example

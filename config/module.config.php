@@ -49,8 +49,8 @@ return [
     'twitter_credentials' => [
         'oauth_access_token' => '',
         'oauth_access_token_secret' => '',
-        'consumer_key' => 'YguWLyI3fltBiq1VSqfQQ',
-        'consumer_secret' => 'CjpZhinCu6jRxc0wTGwIJyGko3NxO1QDtHZEZFl6EE',
-        'userId' => '320650214'
+        'consumer_key' => '',
+        'consumer_secret' => '',
+        'userId' => ''
     ]
 ];

@@ -13,4 +13,4 @@ just clone into your project and provide Twitter credentials in global.php, see 
         'userId' => ''
     ]
 
-Add your own credentials and your good to go. See IndexController for example
+Add your own credentials and your good to go. See /src/Controller/IndexController.php for example

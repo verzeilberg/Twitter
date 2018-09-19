@@ -487,7 +487,6 @@ class twitterOathService implements twitterOathServiceInterface {
     }
 
     public function getTweetById($iTweetId) {
-
         if (!$iTweetId)
             return false;
 
@@ -496,8 +495,7 @@ class twitterOathService implements twitterOathServiceInterface {
         /** Perform a POST request and echo the response * */
         $url = 'https://api.twitter.com/1.1/statuses/show/' . $iTweetId . '.json';
 
-        
-        return json_decode($this->setGetfield($getfield)->buildOauth($url, 'GET')->performRequest());
+        return json_decode($this->buildOauth($url, 'GET')->setGetfield($getfield)->performRequest());
     }
 
     public function deleteTweetOnTwitter($iTweetId) {

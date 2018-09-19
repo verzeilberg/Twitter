@@ -97,5 +97,14 @@ class twitterService implements twitterServiceInterface {
 
         return $sGurl['id'];
     }
+    
+    
+    public function shortenText($text, $delimiter = 120, $useHellip = false){
+        if($text != null) {
+            $result = substr($text, $delimiter) . ($useHellip === true? '&hellip;':''); 
+        }
+        
+        return $result;
+    }
 
 }

@@ -101,9 +101,8 @@ class twitterService implements twitterServiceInterface {
     
     public function shortenText($text, $delimiter = 120, $useHellip = false){
         if($text != null) {
-            $result = substr($text, $delimiter) . ($useHellip === true? '&hellip;':''); 
+            $result = substr($text, 0, $delimiter) . ($useHellip === true? '&hellip;':''); 
         }
-        
         return $result;
     }
 

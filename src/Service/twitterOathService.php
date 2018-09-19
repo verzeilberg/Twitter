@@ -471,7 +471,7 @@ class twitterOathService implements twitterOathServiceInterface {
             }
         }
 
-        if (strlen($sTweetMessage) > 140) {
+        if (strlen($sTweetMessage) > 180) {
             return false;
         }
 

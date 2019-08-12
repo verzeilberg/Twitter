@@ -460,18 +460,18 @@ class twitterOathService implements twitterOathServiceInterface {
         } else {
             $sTweetMessage = stripslashes($sTweetMessage);
         }
+
         //First check if there are URLS in the string
-
+/*
         $aUrls = $this->twitterService->getUrlsFromString($sTweetMessage);
-
         if (count($aUrls) > 0) {
             //Replace urls with google short url
             foreach ($aUrls AS $sLongUrl) {
                 $sTweetMessage = str_replace($sLongUrl, $this->twitterService->shortenUrl($sLongUrl), $sTweetMessage);
             }
         }
-
-        if (strlen($sTweetMessage) > 180) {
+*/
+        if (strlen($sTweetMessage) > 260) {
             return false;
         }
 

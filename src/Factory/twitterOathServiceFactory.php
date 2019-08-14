@@ -11,7 +11,7 @@ class twitterOathServiceFactory implements FactoryInterface {
 
     public function __invoke(ContainerInterface $container, $requestedName, Array $options = null) {    
         $config = $container->get('config');
-        $twitterService = new twitterService();
+        $twitterService = new twitterService($config);
         return new twitterOathService($config, $twitterService);
     }
 

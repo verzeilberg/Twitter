@@ -5,6 +5,18 @@ namespace Twitter\Service;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 class twitterService implements twitterServiceInterface {
+    private $google_api_key;
+
+
+    public function __construct($config) {
+        if ($config != NULL && array_key_exists('shorten_url_credentials', $config)) {
+            $this->google_api_key = $config['shorten_url_credentials']['google_api_key'];
+        } else {
+            $message = 'You did not provide the config file with the shorten url credentials!';
+            throw new \ErrorException($message, 0, $severity, $file, $line);
+        }
+    }
+
 
     /**
      * validate object
@@ -63,7 +75,7 @@ class twitterService implements twitterServiceInterface {
      */
     public function shortenUrl($longUrl) {
 
-        define('GOOGLE_API_KEY', 'AIzaSyDIw8MCqnETlVYrH_4ekuz98PX0newMwtI');
+        define('GOOGLE_API_KEY', $this->google_api_key);
         define('GOOGLE_ENDPOINT', 'https://www.googleapis.com/urlshortener/v1');
 
         // initialize the cURL connection

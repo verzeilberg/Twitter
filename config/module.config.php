@@ -52,5 +52,8 @@ return [
         'consumer_key' => '',
         'consumer_secret' => '',
         'userId' => ''
+    ],
+    'shorten_url_credentials' => [
+        'google_api_key' => ''
     ]
 ];

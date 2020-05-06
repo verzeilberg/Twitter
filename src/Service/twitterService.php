@@ -2,7 +2,7 @@
 
 namespace Twitter\Service;
 
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class twitterService implements twitterServiceInterface {
     private $google_api_key;

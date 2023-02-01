@@ -118,4 +118,22 @@ class twitterService implements twitterServiceInterface {
         return $result;
     }
 
+    /**
+     * @param $tweets
+     * @return array
+     * @throws Exception
+     */
+    public function createTweetArray($tweets): array
+    {
+        $tweetsArray = [];
+        foreach ($tweets as $index => $tweet) {
+            $tweetsArray[$index]['tweet_text'] = $this->twitterFy($tweet->text);
+            $date = new \DateTime($tweet->created_at);
+            $timeStamp = $date->getTimestamp();
+            $tweetsArray[$index]['tweet_date'] = $this->ShowDate($timeStamp);
+        }
+
+        return $tweetsArray;
+    }
+
 }

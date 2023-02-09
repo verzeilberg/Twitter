@@ -3,6 +3,7 @@
 namespace Twitter\Service;
 
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Symfony\Component\VarDumper\VarDumper;
 
 class twitterService implements twitterServiceInterface {
     private $google_api_key;
@@ -21,11 +22,13 @@ class twitterService implements twitterServiceInterface {
     /**
      * validate object
      */
-    public function twitterFy($tweet_text) {
-        $strTweet = preg_replace(" #((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'<a href=\"$1\" target=\"_blank\">$3</a>$4'", $tweet_text);
-        $strTweet = preg_replace('/(^|\s)#(\w*[a-zA-Z_]+\w*)/', '\1<a href="http://twitter.com/search?q=%23\2" target="new">#\2</a>', $strTweet);
-        $strTweet = preg_replace('/(^|\s)@([a-z0-9_]+)/i', '$1<a href="http://www.twitter.com/$2" target="new">@$2</a>', $strTweet);
-        return $strTweet;
+    public function twitterFy($tweet_desc) {
+
+        $tweet_desc = preg_replace('/(https?:\/\/[^\s"<>]+)/','<a href="$1">$1</a>',$tweet_desc);
+        $tweet_desc = preg_replace('/(^|[\n\s])@([^\s"\t\n\r<:]*)/is', '$1<a href="http://twitter.com/$2">@$2</a>', $tweet_desc);
+        $tweet_desc = preg_replace('/(^|[\n\s])#([^\s"\t\n\r<:]*)/is', '$1<a href="http://twitter.com/search?q=%23$2">#$2</a>', $tweet_desc);
+
+        return $tweet_desc;
     }
 
     /**

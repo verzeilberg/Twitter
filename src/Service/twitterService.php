@@ -2,25 +2,31 @@
 
 namespace Twitter\Service;
 
+use ErrorException;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Symfony\Component\VarDumper\VarDumper;
 
 class twitterService implements twitterServiceInterface {
+
     private $google_api_key;
 
-
+    /**
+     * @param $config
+     * @throws ErrorException
+     */
     public function __construct($config) {
         if ($config != NULL && array_key_exists('shorten_url_credentials', $config)) {
             $this->google_api_key = $config['shorten_url_credentials']['google_api_key'];
         } else {
             $message = 'You did not provide the config file with the shorten url credentials!';
-            throw new \ErrorException($message, 0, $severity, $file, $line);
+            throw new ErrorException($message, 0, $severity, $file, $line);
         }
     }
 
 
     /**
-     * validate object
+     * @param $tweet_desc
+     * @return array|string|string[]|PostInterface[]|null
      */
     public function twitterFy($tweet_desc) {
 
@@ -112,8 +118,13 @@ class twitterService implements twitterServiceInterface {
 
         return $sGurl['id'];
     }
-    
-    
+
+    /**
+     * @param $text
+     * @param $delimiter
+     * @param $useHellip
+     * @return string
+     */
     public function shortenText($text, $delimiter = 120, $useHellip = false){
         if($text != null) {
             $result = substr($text, 0, $delimiter) . ($useHellip === true? '...':'');
@@ -128,6 +139,11 @@ class twitterService implements twitterServiceInterface {
      */
     public function createTweetArray($tweets): array
     {
+
+        if (isset($tweets->errors)) {
+            return [];
+        }
+
         $tweetsArray = [];
         foreach ($tweets as $index => $tweet) {
             $tweetsArray[$index]['tweet_text'] = $this->twitterFy($tweet->text);
